@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color tokens: clinical navy + warm specimen amber ---- */
+  --color-ink-950: #0A2438;
+  --color-ink-900: #0F3D5C;
+  --color-ink-800: #164F76;
+  --color-ink-700: #1B5A82;
+  --color-ink-600: #2B7099;
+  --color-ink-100: #E4EDF3;
+  --color-ink-50:  #F3F7FA;
+
+  --color-mist-50:  #F7F9FA;
+  --color-mist-100: #EEF2F5;
+  --color-mist-200: #E2E8ED;
+  --color-mist-300: #C9D3DA;
+
+  --color-slate-600: #4B5B67;
+  --color-slate-700: #37454F;
+  --color-slate-900: #1B252B;
+
+  --color-amber-600: #B8720F;
+  --color-amber-100: #FBEDD8;
+
+  --color-teal-600: #187A63;
+  --color-teal-100: #DCF1EA;
+
+  --color-brick-600: #B23A2E;
+  --color-brick-100: #F7DFDB;
+
+  /* ---- Type tokens ---- */
+  --font-display: "Manrope", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-data: "IBM Plex Mono", monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-mist-50);
+  color: var(--color-slate-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-ink-100);
+}
+
+/* thin, clinical scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-mist-300); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-600); }
+
+/* visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-ink-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Print: show only the report card, full width, no app chrome */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-report, #printable-report * {
+    visibility: visible;
+  }
+  #printable-report {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
