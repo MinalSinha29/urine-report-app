@@ -16,8 +16,8 @@ export default function Dashboard() {
     <div>
       <PageHeader
         eyebrow="Overview"
-        title="Dashboard"
-        subtitle="A snapshot of today's urinalysis activity across the department."
+        title="Urine Report Analysis Dashboard"
+        subtitle="A snapshot of today's urine report analysis activity across the department."
         actions={
           <Link to="/new-patient">
             <Button icon={UserPlus}>New Patient</Button>

@@ -10,9 +10,25 @@ import {
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/new-patient", label: "New Patient", icon: UserPlus },
-  { to: "/history", label: "Patient History", icon: History },
+  {
+    to: "/",
+    label: "Urine Report Dashboard",
+    title: "View the urine report analysis dashboard",
+    icon: LayoutDashboard,
+    end: true,
+  },
+  {
+    to: "/new-patient",
+    label: "Register New Patient",
+    title: "Register a new patient and enter urine test details",
+    icon: UserPlus,
+  },
+  {
+    to: "/history",
+    label: "Patient Report History",
+    title: "View previous patient urine reports and history",
+    icon: History,
+  },
 ];
 
 export default function Sidebar({ open, onClose }) {
@@ -20,10 +36,9 @@ export default function Sidebar({ open, onClose }) {
     <>
       {/* mobile backdrop */}
       {open && (
-        <button
-          aria-label="Close menu"
+        <div
+          className="fixed inset-0 z-30 bg-black/40 lg:hidden"
           onClick={onClose}
-          className="fixed inset-0 z-30 bg-slate-900/40 lg:hidden"
         />
       )}
 
@@ -38,15 +53,18 @@ export default function Sidebar({ open, onClose }) {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-600">
               <FlaskConical size={17} strokeWidth={2.25} />
             </div>
+
             <div className="leading-tight">
               <p className="font-display text-sm font-bold tracking-tight">
                 UroScan
               </p>
+
               <p className="text-[10px] text-white/50 uppercase tracking-wider">
                 Diagnostics Portal
               </p>
             </div>
           </div>
+
           <button
             onClick={onClose}
             className="lg:hidden text-white/60 hover:text-white"
@@ -56,13 +74,17 @@ export default function Sidebar({ open, onClose }) {
           </button>
         </div>
 
-        <nav className="flex-1 px-3 py-5 space-y-1">
-          {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
+        <nav
+          className="flex-1 px-3 py-5 space-y-1"
+          aria-label="Urine report navigation"
+        >
+          {NAV_ITEMS.map(({ to, label, title, icon: Icon, end }) => (
             <NavLink
               key={to}
               to={to}
               end={end}
               onClick={onClose}
+              title={title}
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors
                 ${
@@ -79,11 +101,18 @@ export default function Sidebar({ open, onClose }) {
         </nav>
 
         <div className="px-3 pb-5 pt-3 border-t border-white/10 space-y-1">
-          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-colors">
+          <button
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+            title="Open application settings"
+          >
             <Settings size={18} strokeWidth={2.1} />
             Settings
           </button>
-          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-colors">
+
+          <button
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+            title="Log out of the UroScan diagnostics portal"
+          >
             <LogOut size={18} strokeWidth={2.1} />
             Log out
           </button>
